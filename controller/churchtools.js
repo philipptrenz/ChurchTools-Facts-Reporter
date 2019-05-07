@@ -4,7 +4,7 @@
 // (c) 2017 ChurchTools
 
 var ctaccessor = require('../lib/ctaccessor');
-var credentials = require('../credentials');
+var credentials = require('../lib/credentials');
 
 var loginQ = function () {
   return ctaccessor.postQ('login/ajax', {

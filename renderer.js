@@ -3,7 +3,7 @@
 // All of the Node.js APIs are available in this process.
 
 var $ = require('jquery');
-var credentials = require('./credentials');
+var credentials = require('./lib/credentials');
 var ct = require('./controller/churchtools');
 var moment = require('moment');
 
@@ -24,6 +24,7 @@ $(document).ready( function() {
             }
         })
         .catch(function(error) {
+
             // TODO: Integrate in user interface (user feedback)
             console.error('getting login data failed:', error);
         });
@@ -48,6 +49,7 @@ $('#login-submit-button').click(function() {
 
         })
         .catch(function(error) {
+
             // TODO: Integrate in user interface (user feedback)
             console.error('setting login data failed:', error);
         });
@@ -87,7 +89,7 @@ function displayEventsList(eventsData) {
             <div class='events-list-item' id='event-${ edata[i].id }'>
                 <p>${ edata[i].date.format('LL') }:  ${ edata[i].name }</p>
             </div>
-        `
+        `;
         $('#events-list').append(html);
 
     }
@@ -113,6 +115,7 @@ $('body').on('click', '.events-list-item', function() {
             displayFacts(eventId, allFacts, factsMetaData);
         })
         .fail(function(error) {
+
             // TODO: Integrate in user interface (user feedback)
             console.log('An error occured while retrieving facts:', error);
         });
@@ -156,7 +159,7 @@ function displayFacts(eventId, allFacts, factsMetaData) {
             <div class='facts-list-item' id='fact-${ f.id }'>
                 ${ f.name }: <input type="text" value="${ f.value }"></input>
             </div>
-        `
+        `;
         $('#facts-list').append(html);
 
     }
@@ -185,10 +188,10 @@ $("#submit-facts").click(function() {
                     fact.value = new_value;
                 })
                 .fail(function (error) {
+
                     // TODO: Integrate in user interface (user feedback)
                     console.error('Updating fact', fact.id, 'failed:', error);
-                })
-
+                });
         }
     }
 
