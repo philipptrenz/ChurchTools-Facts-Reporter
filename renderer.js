@@ -147,7 +147,6 @@ function displayFacts(eventId, allFacts, factsMetaData) {
                 }
             }
         }
-
         listOfFactsForEvent.push({ id: f.id, name: f.bezeichnung, sortKey: f.sortkey, value: value });
     }
 
@@ -163,14 +162,12 @@ function displayFacts(eventId, allFacts, factsMetaData) {
         $('#facts-list').append(html);
 
     }
-
 }
 
 
 $("#submit-facts").click(function() {
 
     if (eventIdOfFacts === "") return;
-
     for (i in listOfFactsForEvent) {
 
         var fact = listOfFactsForEvent[i];
@@ -194,5 +191,4 @@ $("#submit-facts").click(function() {
                 });
         }
     }
-
 });
