@@ -23,6 +23,7 @@ electron-packager . "ChurchTools Facts Reporter" --ignore="\.gitignore" --out="o
 
 ## Todos
 
+* Change credential-manager to secure [keytar](https://www.npmjs.com/package/keytar)
 * Convert to [TypeScript](https://www.typescriptlang.org)
 * Convert to [React](https://reactjs.org) components
 * Add [Materialize](http://materializecss.com)
