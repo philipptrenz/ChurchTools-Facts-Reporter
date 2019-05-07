@@ -94,9 +94,8 @@ var setFactQ = function (eventId, factId, value) {
 
 
 module.exports = {
-  getAllBookingsQ: getAllBookingsQ,
-  getMasterDataQ: getMasterDataQ,
-  getEventsOverviewQ: getEventsOverviewQ,
-  getAllFactsQ: getAllFactsQ,
-  setFactQ: setFactQ
+    getEventsOverviewQ: getEventsOverviewQ,
+    getMasterData: getMasterData,
+    getAllFacts: getAllFacts,
+    setFact: setFact,
 };

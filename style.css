@@ -1,0 +1,25 @@
+
+#events-list {
+    overflow-y:scroll;
+    height:300px;
+}
+
+.events-list-item {
+    height: 50px;
+    margin: 10px 0;
+    background: darkgray;
+}
+
+.events-list-item:hover {
+    height: 50px;
+    margin: 10px 0;
+    background: lightgray;
+}
+
+.events-list-item p {
+    padding: 5px;
+}
+
+#facts-list {
+
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
+    <title>ChurchTools Facts Reporter</title>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+  </head>
+  <body>
+
+    <div>
+
+      <h2>1. Login</h2>
+
+      <input type="url" id="login-host" placeholder="xyz.church.tools"></input><br />
+      <input type="text" id="login-user" placeholder="username"></input><br />
+      <input type="password" id="login-pwd" placeholder="password"></input><br />
+      <input type="checkbox" id="login-save-pwd"> save password?<br />
+      <input type="button" id="login-submit-button" value="lets go"></input>
+
+    </div>
+
+    <br/>
+
+    <div>
+      <h2>2. Choose a event</h2>
+      Click on the event to which you want to add facts
+      <div id="events-list" ></div>
+    </div>
+
+    <br/>
+
+    <div>
+      <h2>3. Submit your facts</h2>
+      <div id="facts-list" ></div>
+      <br />
+      <input type="button" name="submit" id="submit-facts" value="report"></input>
+    </div>
+
+    <script type="text/javascript" src="./renderer.js"></script>
+  </body>
+</html>

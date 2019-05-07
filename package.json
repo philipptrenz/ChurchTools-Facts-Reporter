@@ -1,17 +1,24 @@
 {
-  "name": "ctnodedemo",
-  "version": "1.0.0",
+  "name": "churchtools-facts-reporter",
+  "version": "0.1.0",
   "description": "",
-  "main": "demo.js",
+  "main": "main.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Philipp Trenz",
+  "license": "MIT",
   "dependencies": {
+    "electron-json-storage": "^4.1.6",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
     "q": "^1.4.1",
     "restler": "^3.4.0",
     "underscore": "^1.8.3",
     "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "electron": "^5.0.0"
   }
 }
