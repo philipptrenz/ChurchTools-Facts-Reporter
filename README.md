@@ -23,9 +23,17 @@ electron-packager . "ChurchTools Facts Reporter" --ignore="\.gitignore" --out="o
 
 ## Todos
 
-* Change credential storage to [keytar](https://www.npmjs.com/package/keytar)
-* Add auto-logout on quit
-* Convert to [TypeScript](https://www.typescriptlang.org)
-* Convert to [React](https://reactjs.org) components
-* Add [Materialize](http://materializecss.com)
+* Login
+	* Change credential storage to [keytar](https://www.npmjs.com/package/keytar)
+	* Add auto-logout on quit
+	* Add auto-login when credentials are available
+* Usability
+	* Display overwrite warning, if event already has values for its facts
+	* Display if reporting facts worked or not
+	* Auto-select latest event
+	* Validate facts value input to only allow numbers
+* Architecture
+	* Convert to [TypeScript](https://www.typescriptlang.org)
+	* Convert to [React](https://reactjs.org) components
+	* Add [Materialize](http://materializecss.com)
 * Make it fancy ✨
