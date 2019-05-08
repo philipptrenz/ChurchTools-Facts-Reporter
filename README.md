@@ -18,7 +18,7 @@ npm start
 npm install -g electron-packager
 
 # Package the application
-electron-packager . "ChurchTools Facts Reporter" --ignore="\.gitignore" --out="out/"
+npm run-script package
 ```
 
 ## Todos
