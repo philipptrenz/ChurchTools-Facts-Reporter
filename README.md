@@ -26,7 +26,7 @@ npm run-script package
 * Login
 	* Change credential storage to [keytar](https://www.npmjs.com/package/keytar)
 	* Add auto-logout on quit
-	* Add auto-login when credentials are available
+	* Add auto-login when credentials are stored
 * Usability
 	* Display overwrite warning, if event already has values for its facts
 	* Display if reporting facts worked or not
