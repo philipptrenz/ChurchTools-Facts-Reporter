@@ -25,12 +25,11 @@ npm run-script package
 
 * Login
 	* Add auto-logout on quit
-	* Add auto-login when credentials are stored
+	* Add password delete button
 * Usability
 	* Display overwrite warning, if event already has values for its facts
 	* Display if reporting facts worked or not
 	* Auto-select latest event
-	* Validate facts value input to only allow numbers
 * Architecture
 	* Convert to [TypeScript](https://www.typescriptlang.org)
 	* Convert to [React](https://reactjs.org) components

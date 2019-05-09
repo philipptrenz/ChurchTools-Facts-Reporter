@@ -13,14 +13,16 @@ $(document).ready( function() {
     credentials.getLoginData()
         .then(() => {
             const creds = credentials.churchtools;
-            if (typeof creds !== 'undefined'
-                && typeof creds.host !== 'undefined'
-                && typeof creds.user !== 'undefined') {
 
-                $('#login-host').val(removeUrlProtocol(creds.host));
-                $('#login-user').val(creds.user);
-                $('#login-pwd').val(creds.password);
+            $('#login-host').val(removeUrlProtocol(creds.host));
+            $('#login-user').val(creds.user);
+            $('#login-pwd').val(creds.password);
+
+            if (creds.host !== '' && creds.user !== '' && creds.password !== '') {
+                // try auto-login
+                $('#login-submit-button').trigger('click');
             }
+
         })
         .catch((error) => {
             // TODO: Integrate in user interface (user feedback)
@@ -70,7 +72,7 @@ function displayEventsList(eventsData) {
 
     // convert values
     var edata = [];
-    for (var i in eventsData) {
+    for (let i in eventsData) {
         edata.push({ id: eventsData[i].id, date: moment.utc(eventsData[i].startdate, "YYYY-MM-DD HH:mm:ss"), name: eventsData[i].bezeichnung })
     }
 
@@ -79,15 +81,13 @@ function displayEventsList(eventsData) {
         return a.date - b.date;
     });
 
-    for (var i in edata) {
-
-        var html = `
-            <div class='events-list-item' id='event-${ edata[i].id }'>
-                <p>${ edata[i].date.format('LL') }:  ${ edata[i].name }</p>
+    for (let j in edata) {
+        const html = `
+            <div class='events-list-item' id='event-${ edata[j].id }'>
+                <p>${ edata[j].date.format('LL') }:  ${ edata[j].name }</p>
             </div>
         `;
         $('#events-list').append(html);
-
     }
 }
 
@@ -152,7 +152,7 @@ function displayFacts(eventId, allFacts, factsMetaData) {
         var f = listOfFactsForEvent[i];
         var html = `
             <div class='facts-list-item' id='fact-${ f.id }'>
-                ${ f.name }: <input type="text" value="${ f.value }"></input>
+                ${ f.name }: <input type="number" value="${ f.value }" pattern="\\d+"></input>
             </div>
         `;
         $('#facts-list').append(html);
@@ -175,16 +175,21 @@ $("#submit-facts").click(function() {
 
             console.log("difference >", fact.value, '<=>', new_value, '<');
 
-            ct.setFact(eventIdOfFacts, fact.id, new_value)
-                .then(function() {
-                    console.log('fact', fact.id, ' of event', eventIdOfFacts, 'updated from', fact.value, 'to', new_value);
-                    fact.value = new_value;
-                })
-                .fail(function (error) {
+            if (new_value === '' || !isNaN(parseFloat(new_value))) {
+                ct.setFact(eventIdOfFacts, fact.id, new_value)
+                    .then(function () {
+                        console.log('fact', fact.id, ' of event', eventIdOfFacts, 'updated from', fact.value, 'to', new_value);
+                        fact.value = new_value;
+                    })
+                    .fail(function (error) {
 
-                    // TODO: Integrate in user interface (user feedback)
-                    console.error('Updating fact', fact.id, 'failed:', error);
-                });
+                        // TODO: Integrate in user interface (user feedback)
+                        console.error('Updating fact', fact.id, 'failed:', error);
+                    });
+            } else {
+                // TODO: Integrate in user interface (user feedback)
+                console.error(new_value, 'is not parsable to float, not sending new fact value')
+            }
         }
     }
 });
