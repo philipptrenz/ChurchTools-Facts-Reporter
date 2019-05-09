@@ -24,7 +24,6 @@ npm run-script package
 ## Todos
 
 * Login
-	* Change credential storage to [keytar](https://www.npmjs.com/package/keytar)
 	* Add auto-logout on quit
 	* Add auto-login when credentials are stored
 * Usability

@@ -2,29 +2,27 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
-var $ = require('jquery');
-var credentials = require('./lib/credentials');
-var ct = require('./controller/churchtools');
-var moment = require('moment');
+const $ = require('jquery');
+const credentials = require('./lib/credentials');
+const ct = require('./controller/churchtools');
+const moment = require('moment');
 
 $(document).ready( function() {
 
     // load saved Login data from storage
     credentials.getLoginData()
-        .then(function(data) {
-            if (typeof data !== 'undefined'
-                && typeof data.host !== 'undefined'
-                && typeof data.user !== 'undefined') {
+        .then(() => {
+            const creds = credentials.churchtools;
+            if (typeof creds !== 'undefined'
+                && typeof creds.host !== 'undefined'
+                && typeof creds.user !== 'undefined') {
 
-                if (data.password !== "") $("#login-save-pwd").prop( "checked", true );
-
-                $('#login-host').val( removeUrlProtocol(data.host) );
-                $('#login-user').val(data.user);
-                $('#login-pwd').val(data.password);
+                $('#login-host').val(removeUrlProtocol(creds.host));
+                $('#login-user').val(creds.user);
+                $('#login-pwd').val(creds.password);
             }
         })
-        .catch(function(error) {
-
+        .catch((error) => {
             // TODO: Integrate in user interface (user feedback)
             console.error('getting login data failed:', error);
         });
@@ -33,15 +31,13 @@ $(document).ready( function() {
 
 $('#login-submit-button').click(function() {
 
-    var savePwd = $("#login-save-pwd").is(':checked');
-
     var host = $('#login-host').val();
     var user = $('#login-user').val();
     var pwd  = $('#login-pwd' ).val();
 
     host = checkUrl(host);
 
-    credentials.setLoginData(host, user, pwd, savePwd)
+    credentials.setLoginData(host, user, pwd)
         .then(ct.getEventsOverviewQ)
         .then(function(eventsData) {
 

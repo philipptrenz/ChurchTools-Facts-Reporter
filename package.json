@@ -1,18 +1,24 @@
 {
   "name": "churchtools-facts-reporter",
   "version": "0.1.0",
-  "description": "",
+  "description": "This app provides an easy way to report facts about events in ChurchTools",
+  "os": [
+    "win32",
+    "darwin"
+  ],
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "electron-packager . \"ChurchTools Facts Reporter\" --platform=\"darwin\" --platform=\"win32\" --ignore=\"\\.gitignore\" --out=\"out/\" --overwrite"
+    "package": "electron-packager . \"ChurchTools Facts Reporter\" --platform=\"darwin\" --platform=\"win32\" --ignore=\"\\.gitignore\" --out=\"out/\" --overwrite",
+    "postinstall": "./node_modules/.bin/electron-rebuild"
   },
   "author": "Philipp Trenz",
   "license": "MIT",
   "dependencies": {
     "electron-json-storage": "^4.1.6",
     "jquery": "^3.4.1",
+    "keytar": "^4.6.0",
     "moment": "^2.24.0",
     "q": "^1.4.1",
     "restler": "^3.4.0",
@@ -20,6 +26,7 @@
     "winston": "^2.3.1"
   },
   "devDependencies": {
-    "electron": "^5.0.0"
+    "electron": "^5.0.0",
+    "electron-rebuild": "^1.8.4"
   }
 }
