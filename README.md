@@ -26,12 +26,6 @@ npm run-script package
 * Login
 	* Add auto-logout on quit
 	* Add password delete button
-* Usability
-	* Display overwrite warning, if event already has values for its facts
-	* Display if reporting facts worked or not
-	* Auto-select latest event
 * Architecture
 	* Convert to [TypeScript](https://www.typescriptlang.org)
 	* Convert to [React](https://reactjs.org) components
-	* Add [Materialize](http://materializecss.com)
-* Make it fancy ✨

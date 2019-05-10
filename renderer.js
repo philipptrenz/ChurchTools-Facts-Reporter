@@ -197,7 +197,7 @@ function displayFacts(eventId, allFacts, factsMetaData) {
                 </div>
                 <div class="input-field inline col s6">
                     <i class="material-icons prefix icon-small">mode_edit</i>
-                    <input type="number" value="${f.value}" pattern="\\d+" class="validate">
+                    <input type="number" value="${f.value}" pattern="\\d+" class="">
                 </div>
             </li>
         `;
@@ -225,6 +225,7 @@ $("#submit-facts").click(function() {
                     .then(function () {
                         console.log('fact', fact.id, ' of event', eventIdOfFacts, 'updated from', fact.value, 'to', new_value);
                         fact.value = new_value;
+                        M.toast({html: 'Fact \''+fact.name+'\' saved'})
                     })
                     .fail(function (error) {
 
