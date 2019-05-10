@@ -1,5 +1,6 @@
 body {
     display: none;
+    overflow:hidden;
 }
 
 button {
@@ -9,6 +10,13 @@ button {
 
 nav .brand-logo.left{
     padding-left: 0.8rem;
+}
+
+#logo-monochrome {
+   height: 45px;
+    position: relative;
+    top: 9px;
+    padding-right: 10px;
 }
 
 #logout-button-wrapper {

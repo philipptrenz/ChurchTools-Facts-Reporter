@@ -11,6 +11,10 @@ npm install
 # Run the app
 npm start
 ```
+
+*Note:* If you are on Linux install the `libsecret` library first ([see here](https://www.npmjs.com/package/keytar#on-linux)).
+
+
 ### Package application
 
 ```
@@ -18,7 +22,9 @@ npm start
 npm install -g electron-packager
 
 # Package the application
-npm run-script package
+npm run-script package-mac
+npm run-script package-win
+npm run-script package-linux
 ```
 
 ## Todos
