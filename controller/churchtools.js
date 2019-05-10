@@ -14,6 +14,13 @@ var loginQ = function () {
   });
 };
 
+
+var logout = function () {
+    return ctaccessor.postQ('login/ajax', {
+        func: 'logout'
+    });
+};
+
 // ----------- churchresource -----------
 
 var getResourceBookingsQ = function () {
@@ -98,4 +105,5 @@ module.exports = {
     getMasterData: getMasterData,
     getAllFacts: getAllFacts,
     setFact: setFact,
+    logout: logout
 };

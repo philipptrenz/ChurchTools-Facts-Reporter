@@ -1,10 +1,48 @@
+body {
+    display: none;
+}
+
 button {
     margin: 10px 0;
 }
 
+
+nav .brand-logo.left{
+    padding-left: 0.8rem;
+}
+
+#logout-button-wrapper {
+    display: none;
+}
+
+#login-store-switch {
+    display: inline-block;
+}
+
+.login-row .col {
+    padding: 0 !important;
+}
+
+.login-row .col .switch {
+    padding-top: 0.75rem;
+}
+
+#edit-container {
+    display: none;
+}
+
 #events-list {
     overflow-y:scroll;
-    height:325px;
+    height:353px;
+}
+
+#facts-list-wrapper {
+    overflow-y:scroll;
+    height:310px;
+}
+
+#facts-list {
+
 }
 
 /*
@@ -34,7 +72,26 @@ button {
 
 }
 
+.fact-description {
+    margin-top: 0;
+}
+
 .facts-list-item .input-field {
-    margin-top: 0.8rem;
+    margin-top: 0;
     margin-bottom: 0;
+}
+
+.facts-list-item h5 {
+    font-size: 1.3rem;
+}
+
+#load-facts-icon {
+    display: inline;
+    padding-left: 15px;
+    opacity: 0;
+}
+
+#load-facts-icon > div {
+    position: relative;
+    top: 15px;
 }

@@ -3,11 +3,18 @@
 // All of the Node.js APIs are available in this process.
 
 const $ = require('jquery');
-const credentials = require('./lib/credentials');
-const ct = require('./controller/churchtools');
 const moment = require('moment');
+const { remote } = require('electron');
+const ct = require('./controller/churchtools');
+const credentials = require('./lib/credentials');
+
+
+const fadeTime = 1500;
 
 $(document).ready( function() {
+
+
+    $('body').fadeIn(fadeTime);
 
     // load saved Login data from storage
     credentials.getLoginData()
@@ -18,10 +25,18 @@ $(document).ready( function() {
             $('#login-user').val(creds.user);
             $('#login-pwd').val(creds.password);
 
-            if (creds.host !== '' && creds.user !== '' && creds.password !== '') {
-                // try auto-login
-                $('#login-submit-button').trigger('click');
+            if (creds.password) {
+
+                // check switch
+                $('#login-store-switch').prop('checked', true);
+
+                if (creds.host && creds.user) {
+                    // try auto-login
+                    $('#login-submit-button').trigger('click');
+                }
             }
+
+
 
         })
         .catch((error) => {
@@ -33,17 +48,23 @@ $(document).ready( function() {
 
 $('#login-submit-button').click(function() {
 
-    var host = $('#login-host').val();
-    var user = $('#login-user').val();
-    var pwd  = $('#login-pwd' ).val();
+    let host = $('#login-host').val();
+    const user = $('#login-user').val();
+    const pwd  = $('#login-pwd' ).val();
 
+    const savePassword = $('#login-store-switch').prop('checked');
     host = checkUrl(host);
 
-    credentials.setLoginData(host, user, pwd)
+
+
+    credentials.setLoginData(host, user, pwd, savePassword)
         .then(ct.getEventsOverviewQ)
         .then(function(eventsData) {
 
-            disableLoginForm();
+            $('#edit-container').fadeIn(fadeTime);
+            $('#logout-button-wrapper').fadeIn(fadeTime);
+            $('#login-container').slideUp(1000);
+
             displayEventsList(eventsData);
 
         })
@@ -52,6 +73,34 @@ $('#login-submit-button').click(function() {
             // TODO: Integrate in user interface (user feedback)
             console.error('setting login data failed:', error);
         });
+});
+
+
+$('#login-store-switch').on("click",function() {
+    const savePassword = $(this).prop('checked');
+    if (!savePassword) {
+        credentials.deletePassword()
+            .catch(() => {
+                console.error('deleting password failed');
+            })
+    }
+});
+
+
+$('#logout-button').on("click", function() {
+
+    ct.logout()
+        .then(() => {
+
+            $('#logout-button-wrapper').fadeOut(fadeTime);
+            $('#edit-container').fadeOut(fadeTime);
+            $('#login-container').slideDown(1000);
+
+        })
+        .catch( ()=> {
+            console.error('logout failed')
+    });
+
 });
 
 function checkUrl(url) {
@@ -66,12 +115,14 @@ function removeUrlProtocol(url) {
     return url.startsWith('https://') ? url.substr(8): url;
 }
 
-function disableLoginForm() {
-    $('#login-host').prop( "disabled", true );
-    $('#login-user').prop( "disabled", true );
-    $('#login-pwd' ).prop( "disabled", true );
-    $('#login-submit-button').addClass("disabled");
+function showFactsLoaderIcon() {
+    $('#load-facts-icon').css('opacity',0).animate({opacity:1}, 400);
 }
+
+function hideFactsLoaderIcon() {
+    $('#load-facts-icon').css('opacity',1).animate({opacity:0}, 400);
+}
+
 
 function displayEventsList(eventsData) {
 
@@ -125,6 +176,8 @@ $('body').on('click', '.events-list-item', function() {
     $(this).css('background-color', 'lightgray');
     */
 
+    showFactsLoaderIcon();
+
 
     $( '.events-list-item' ).each(function() {
         $(this).removeClass("active");
@@ -148,7 +201,8 @@ $('body').on('click', '.events-list-item', function() {
 
             // TODO: Integrate in user interface (user feedback)
             console.log('An error occured while retrieving facts:', error);
-        });
+        })
+        .finally(hideFactsLoaderIcon);
 
 });
 
