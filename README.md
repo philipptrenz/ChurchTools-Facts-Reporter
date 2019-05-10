@@ -26,6 +26,9 @@ npm run-script package
 * Login
 	* Add auto-logout on quit
 	* Add password delete button
+* Usability
+    * Add button to select if password should be stored
+    * Add delete button for stored password
 * Architecture
 	* Convert to [TypeScript](https://www.typescriptlang.org)
 	* Convert to [React](https://reactjs.org) components
