@@ -2,40 +2,55 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="style-src 'unsafe-inline' 'self'; default-src 'self';">
     <title>ChurchTools Facts Reporter</title>
+    <link rel="stylesheet" type="text/css" href="style/materialize/css/materialize.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="style/materialize/font/font.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="style/style.css" media="screen" />
   </head>
   <body>
 
-    <div>
+    <div class="container">
 
-      <h2>1. Login</h2>
+      <div class="row">
 
-      <input type="url" id="login-host" placeholder="xyz.church.tools"></input><br />
-      <input type="text" id="login-user" placeholder="username"></input><br />
-      <input type="password" id="login-pwd" placeholder="password"></input><br />
-      <input type="button" id="login-submit-button" value="lets go"></input>
+        <h4>1. Login</h4>
 
-    </div>
+        <input type="url" id="login-host" placeholder="xyz.church.tools"></input>
+        <input type="text" id="login-user" placeholder="username"></input>
+        <input type="password" id="login-pwd" placeholder="password"></input>
 
-    <br/>
+        <button class="btn waves-effect waves-light btn-small" id="login-submit-button" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
 
-    <div>
-      <h2>2. Choose a event</h2>
-      Click on the event to which you want to add facts
-      <div id="events-list" ></div>
-    </div>
+      </div>
 
-    <br/>
+      <div class="row">
 
-    <div>
-      <h2>3. Submit your facts</h2>
-      <div id="facts-list" ></div>
-      <br />
-      <input type="button" name="submit" id="submit-facts" value="report"></input>
+        <h4>2. Choose an event and report your facts</h4>
+
+        <div class="col s6">
+
+          <div class="collection" id="events-list" ></div>
+
+        </div>
+
+        <div class="col s6">
+
+          <ul class="collection" id="facts-list"></ul>
+
+          <button class="btn waves-effect waves-light btn-small" id="submit-facts" type="submit" name="action">Report
+            <i class="material-icons right">send</i>
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
     <script type="text/javascript" src="./renderer.js"></script>
+    <script type="text/javascript" src="./style/materialize/js/materialize.js"></script>
   </body>
 </html>

@@ -1,9 +1,13 @@
+button {
+    margin: 10px 0;
+}
 
 #events-list {
     overflow-y:scroll;
-    height:300px;
+    height:325px;
 }
 
+/*
 .events-list-item {
     height: 50px;
     margin: 10px 0;
@@ -19,7 +23,18 @@
 .events-list-item p {
     padding: 5px;
 }
+*/
+
+.events-list-item-date {
+    font-weight: bold;
+    padding-bottom: 0;
+}
 
 #facts-list {
 
+}
+
+.facts-list-item .input-field {
+    margin-top: 0.8rem;
+    margin-bottom: 0;
 }

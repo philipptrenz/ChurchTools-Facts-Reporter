@@ -43,6 +43,7 @@ $('#login-submit-button').click(function() {
         .then(ct.getEventsOverviewQ)
         .then(function(eventsData) {
 
+            disableLoginForm();
             displayEventsList(eventsData);
 
         })
@@ -65,6 +66,13 @@ function removeUrlProtocol(url) {
     return url.startsWith('https://') ? url.substr(8): url;
 }
 
+function disableLoginForm() {
+    $('#login-host').prop( "disabled", true );
+    $('#login-user').prop( "disabled", true );
+    $('#login-pwd' ).prop( "disabled", true );
+    $('#login-submit-button').addClass("disabled");
+}
+
 function displayEventsList(eventsData) {
 
     // empty div
@@ -81,26 +89,52 @@ function displayEventsList(eventsData) {
         return a.date - b.date;
     });
 
+    const lastSunday = moment().isoWeekday(0);
+    let lastSundayEvent = null;
     for (let j in edata) {
+
+        const _date = edata[j].date;
+
+        // TODO: Fix workaround
+        if ( _date.format('LL') === lastSunday.format('LL') ) {
+            lastSundayEvent = '#event-'+ edata[j].id;
+        }
+
         const html = `
-            <div class='events-list-item' id='event-${ edata[j].id }'>
-                <p>${ edata[j].date.format('LL') }:  ${ edata[j].name }</p>
-            </div>
+            <a class='events-list-item collection-item' id='event-${ edata[j].id }'>
+                <p><span class='events-list-item-date'>${ _date.format('LL') }</span><br />
+                ${ edata[j].name }</p>
+            </a>
         `;
         $('#events-list').append(html);
+    }
+
+    // select last sundays event
+    if (lastSundayEvent != null) {
+        $(lastSundayEvent).trigger('click');
     }
 }
 
 $('body').on('click', '.events-list-item', function() {
 
+    /*
     // reset all colors and then color current light
     $( '.events-list-item' ).each(function() {
         $(this).css('background-color', 'darkgray');
     });
     $(this).css('background-color', 'lightgray');
+    */
 
-    var eventId = $(this).attr('id').substr(6);
-    var factsMetaData;
+
+    $( '.events-list-item' ).each(function() {
+        $(this).removeClass("active");
+    });
+    $(this).addClass("active");
+
+
+
+    const eventId = $(this).attr('id').substr(6);
+    let factsMetaData;
 
     ct.getMasterData()
         .then(function(masterData) {
@@ -131,8 +165,8 @@ function displayFacts(eventId, allFacts, factsMetaData) {
     // TODO: Sort names of facts and improve merging
     listOfFactsForEvent = [];
     for (var i in factsMetaData) {
-        var f = factsMetaData[i];
-        var value = '';
+        const f = factsMetaData[i];
+        let value = '';
 
         if (eventId in allFacts) {
             for (var j in allFacts[eventId]) {
@@ -149,14 +183,25 @@ function displayFacts(eventId, allFacts, factsMetaData) {
 
     for (var i in listOfFactsForEvent) {
 
-        var f = listOfFactsForEvent[i];
-        var html = `
+        const f = listOfFactsForEvent[i];
+        /*
+        const html = `
             <div class='facts-list-item' id='fact-${ f.id }'>
                 ${ f.name }: <input type="number" value="${ f.value }" pattern="\\d+"></input>
             </div>
+        `;*/
+        const html = `
+            <li class='collection-item facts-list-item row' id='fact-${ f.id }'>
+                <div class="fact-description col s6">
+                    <h5>${ f.name }</h5>
+                </div>
+                <div class="input-field inline col s6">
+                    <i class="material-icons prefix icon-small">mode_edit</i>
+                    <input type="number" value="${f.value}" pattern="\\d+" class="validate">
+                </div>
+            </li>
         `;
         $('#facts-list').append(html);
-
     }
 }
 
@@ -164,16 +209,16 @@ function displayFacts(eventId, allFacts, factsMetaData) {
 $("#submit-facts").click(function() {
 
     if (eventIdOfFacts === "") return;
-    for (i in listOfFactsForEvent) {
+    for (let i in listOfFactsForEvent) {
 
-        var fact = listOfFactsForEvent[i];
-        var factInputId = '#fact-' + fact.id + ' input';
-        var new_value = $(factInputId).val();
+        let fact = listOfFactsForEvent[i];
+        let factInputId = '#fact-' + fact.id + ' input';
+        let new_value = $(factInputId).val();
 
         // if value got changed
         if (fact.value != new_value) {
 
-            console.log("difference >", fact.value, '<=>', new_value, '<');
+            //console.log(factInputId, ": difference >", fact.value, '<=>', new_value, '<');
 
             if (new_value === '' || !isNaN(parseFloat(new_value))) {
                 ct.setFact(eventIdOfFacts, fact.id, new_value)
