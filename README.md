@@ -23,8 +23,10 @@ npm run-script package
 
 ## Todos
 
-* Login
+* Login/Logout
 	* Add auto-logout on quit
 * Architecture
+    * Testing
 	* Convert to [TypeScript](https://www.typescriptlang.org)
 	* Convert to [React](https://reactjs.org) components
+	

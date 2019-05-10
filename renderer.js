@@ -4,7 +4,6 @@
 
 const $ = require('jquery');
 const moment = require('moment');
-const { remote } = require('electron');
 const ct = require('./controller/churchtools');
 const credentials = require('./lib/credentials');
 
@@ -130,9 +129,13 @@ function displayEventsList(eventsData) {
     $('#events-list').empty();
 
     // convert values
-    var edata = [];
+    let edata = [];
     for (let i in eventsData) {
-        edata.push({ id: eventsData[i].id, date: moment.utc(eventsData[i].startdate, "YYYY-MM-DD HH:mm:ss"), name: eventsData[i].bezeichnung })
+        edata.push({
+            id: eventsData[i].id,
+            date: moment.utc(eventsData[i].startdate, "YYYY-MM-DD HH:mm:ss"),
+            name: eventsData[i].bezeichnung
+        })
     }
 
     // Sort array after date
@@ -143,7 +146,6 @@ function displayEventsList(eventsData) {
     const lastSunday = moment().isoWeekday(0);
     let lastSundayEvent = null;
     for (let j in edata) {
-
         const _date = edata[j].date;
 
         // TODO: Fix workaround
@@ -163,18 +165,14 @@ function displayEventsList(eventsData) {
     // select last sundays event
     if (lastSundayEvent != null) {
         $(lastSundayEvent).trigger('click');
+
+        // Scroll to the center of the selected event
+        $("#events-list").scrollTop($("#events-list").scrollTop() + $(lastSundayEvent).position().top
+            - $("#events-list").height()/2 + $(lastSundayEvent).height()/2);
     }
 }
 
 $('body').on('click', '.events-list-item', function() {
-
-    /*
-    // reset all colors and then color current light
-    $( '.events-list-item' ).each(function() {
-        $(this).css('background-color', 'darkgray');
-    });
-    $(this).css('background-color', 'lightgray');
-    */
 
     showFactsLoaderIcon();
 
@@ -183,8 +181,6 @@ $('body').on('click', '.events-list-item', function() {
         $(this).removeClass("active");
     });
     $(this).addClass("active");
-
-
 
     const eventId = $(this).attr('id').substr(6);
     let factsMetaData;
@@ -206,8 +202,8 @@ $('body').on('click', '.events-list-item', function() {
 
 });
 
-var listOfFactsForEvent = [];
-var eventIdOfFacts = '';
+let listOfFactsForEvent = [];
+let eventIdOfFacts = '';
 
 function displayFacts(eventId, allFacts, factsMetaData) {
 
@@ -218,13 +214,13 @@ function displayFacts(eventId, allFacts, factsMetaData) {
 
     // TODO: Sort names of facts and improve merging
     listOfFactsForEvent = [];
-    for (var i in factsMetaData) {
+    for (let i in factsMetaData) {
         const f = factsMetaData[i];
         let value = '';
 
         if (eventId in allFacts) {
-            for (var j in allFacts[eventId]) {
-                var x = allFacts[eventId][j];
+            for (let j in allFacts[eventId]) {
+                const x = allFacts[eventId][j];
                 if (x.fact_id == f.id) {
                     value = x.value;
                     break;
@@ -235,15 +231,9 @@ function displayFacts(eventId, allFacts, factsMetaData) {
     }
 
 
-    for (var i in listOfFactsForEvent) {
+    for (let i in listOfFactsForEvent) {
 
         const f = listOfFactsForEvent[i];
-        /*
-        const html = `
-            <div class='facts-list-item' id='fact-${ f.id }'>
-                ${ f.name }: <input type="number" value="${ f.value }" pattern="\\d+"></input>
-            </div>
-        `;*/
         const html = `
             <li class='collection-item facts-list-item row' id='fact-${ f.id }'>
                 <div class="fact-description col s6">
