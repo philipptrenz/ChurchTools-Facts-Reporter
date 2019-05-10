@@ -27,6 +27,10 @@ nav .brand-logo.left{
     padding-top: 0.75rem;
 }
 
+.toast-check-icon {
+    padding-right: 0.4rem;
+}
+
 #edit-container {
     display: none;
 }
