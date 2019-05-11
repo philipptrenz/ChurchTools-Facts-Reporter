@@ -30,6 +30,7 @@
     "electron-json-storage": "^4.1.6",
     "jquery": "^3.4.1",
     "keytar": "^4.6.0",
+    "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
     "q": "^1.4.1",
     "restler": "^3.4.0",
