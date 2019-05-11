@@ -29,8 +29,6 @@ npm run-script package-linux
 
 ## Todos
 
-* Login/Logout
-	* Add auto-logout on quit
 * Architecture
     * Testing
 	* Convert to [TypeScript](https://www.typescriptlang.org)

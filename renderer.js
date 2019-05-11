@@ -6,9 +6,35 @@ const $ = require('jquery');
 const moment = require('moment');
 const ct = require('./lib/churchtools');
 const credentials = require('./lib/credentials');
+const {remote, ipcRenderer} = require('electron');
 
-
+let isLoggedIn = false;
 const fadeTime = 1500;
+
+// logout before window close
+ipcRenderer.on('app-close', _ => {
+
+    if (isLoggedIn) {
+        $('#logout-container').fadeIn(fadeTime-300);
+        ct.logout()
+            .then(() => {
+                console.log('logged out');
+
+                $('#logout h3').fadeIn(fadeTime-300, function() {
+                    setTimeout(function() {
+                        ipcRenderer.send('app-closed');
+                    }, 300);
+                });
+
+            })
+            .catch(() => {
+                console.error('logout failed');
+            })
+    } else {
+        ipcRenderer.send('app-closed');
+    }
+
+});
 
 $(document).ready( function() {
 
@@ -60,6 +86,8 @@ $('#login-submit-button').click(function() {
         .then(ct.getEventsOverviewQ)
         .then(function(eventsData) {
 
+            isLoggedIn = true;
+
             $('#edit-container').fadeIn(fadeTime);
             $('#logout-button-wrapper').fadeIn(fadeTime);
             $('#login-container').slideUp(1000);
@@ -90,6 +118,8 @@ $('#logout-button').on("click", function() {
 
     ct.logout()
         .then(() => {
+
+            isLoggedIn = false;
 
             $('#logout-button-wrapper').fadeOut(fadeTime);
             $('#edit-container').fadeOut(fadeTime);
