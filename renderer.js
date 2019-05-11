@@ -15,12 +15,13 @@ const fadeTime = 1500;
 ipcRenderer.on('app-close', _ => {
 
     if (isLoggedIn) {
-        $('#logout-container').fadeIn(fadeTime-300);
+        const fadeTimeOffset = 300;
+        $('#logout-container').fadeIn(fadeTime-fadeTimeOffset);
+
         ct.logout()
             .then(() => {
-                console.log('logged out');
 
-                $('#logout h3').fadeIn(fadeTime-300, function() {
+                $('#logout h3').fadeIn(fadeTime-fadeTimeOffset, function() {
                     setTimeout(function() {
                         ipcRenderer.send('app-closed');
                     }, 300);
@@ -37,7 +38,6 @@ ipcRenderer.on('app-close', _ => {
 });
 
 $(document).ready( function() {
-
 
     $('body').fadeIn(fadeTime);
 
@@ -60,8 +60,6 @@ $(document).ready( function() {
                     $('#login-submit-button').trigger('click');
                 }
             }
-
-
 
         })
         .catch((error) => {
