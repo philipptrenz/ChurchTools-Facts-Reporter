@@ -53,6 +53,10 @@ nav .brand-logo.left{
     display: none;
 }
 
+#logout-button i {
+    margin-left: 0.5rem;
+}
+
 #login-store-switch {
     display: inline-block;
 }
@@ -86,24 +90,6 @@ nav .brand-logo.left{
 #facts-list {
 
 }
-
-/*
-.events-list-item {
-    height: 50px;
-    margin: 10px 0;
-    background: darkgray;
-}
-
-.events-list-item:hover {
-    height: 50px;
-    margin: 10px 0;
-    background: lightgray;
-}
-
-.events-list-item p {
-    padding: 5px;
-}
-*/
 
 .events-list-item-date {
     font-weight: bold;
