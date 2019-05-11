@@ -30,11 +30,4 @@ npm run-script package-mac
 npm run-script package-win
 npm run-script package-linux
 ```
-
-## Todos
-
-* Architecture
-    * Testing
-	* Convert to [TypeScript](https://www.typescriptlang.org)
-	* Convert to [React](https://reactjs.org) components
 	
