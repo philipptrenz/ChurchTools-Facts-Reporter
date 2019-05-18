@@ -6,7 +6,7 @@ const $ = require('jquery');
 const moment = require('moment');
 const ct = require('./lib/churchtools');
 const credentials = require('./lib/credentials');
-const {remote, ipcRenderer} = require('electron');
+const {ipcRenderer} = require('electron');
 
 let isLoggedIn = false;
 const fadeTime = 1500;
