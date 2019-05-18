@@ -104,7 +104,7 @@ $('#login-submit-button').click(function() {
 $('#login-store-switch').on("click",function() {
     const savePassword = $(this).prop('checked');
     if (!savePassword) {
-        credentials.deletePassword()
+        credentials.deleteLoginData()
             .catch(() => {
                 console.error('deleting password failed');
             })

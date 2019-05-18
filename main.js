@@ -1,9 +1,11 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
+const keytar = require('keytar')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+const keytarServiceName = app.getName()
 
 function createWindow () {
   // Create the browser window.
@@ -65,6 +67,31 @@ app.on('activate', function () {
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow()
 })
+
+
+// keytar
+
+ipcMain.on('get-password', (event, user) => {
+  keytar.getPassword(keytarServiceName, user)
+      .then((res) => {
+        event.returnValue = res;
+      });
+});
+
+ipcMain.on('set-password', (event, user, pass) => {
+  keytar.setPassword(keytarServiceName, user, pass)
+      .then((res) => {
+        event.returnValue = res;
+      });
+});
+
+ipcMain.on('delete-password', (event, user) => {
+  keytar.deletePassword(keytarServiceName, user)
+      .then((res) => {
+        event.returnValue = res;
+      });
+});
+
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
