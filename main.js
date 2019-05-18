@@ -33,21 +33,21 @@ function createWindow () {
     }
   });
 
+  // Close window event from renderer
+  ipcMain.on('app-closed', function() {
+    mainWindow = null
+    app.quit()
+  });
+
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    //mainWindow = null
+    mainWindow = null
   })
 
 }
-
-// Close window event from renderer
-ipcMain.on('app-closed', _ => {
-  mainWindow = null
-  app.quit()
-});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -58,8 +58,8 @@ app.on('ready', createWindow)
 app.on('window-all-closed', function () {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-  //if (process.platform !== 'darwin') app.quit()
   app.quit()
+  //if (process.platform !== 'darwin') app.quit()
 })
 
 app.on('activate', function () {
