@@ -41,6 +41,11 @@ $(document).ready( function() {
 
     $('body').fadeIn(fadeTime);
 
+
+    $('#login-host, #login-user, #login-pwd').on('input', function() {
+        $('#login-host, #login-user, #login-pwd').removeClass('invalid');
+    });
+
     // load saved Login data from storage
     credentials.getLoginData()
         .then(() => {
@@ -94,8 +99,10 @@ $('#login-submit-button').click(function() {
 
         })
         .catch(function(error) {
-
             // TODO: Integrate in user interface (user feedback)
+
+            $('#login-host, #login-user, #login-pwd').addClass('invalid');
+
             console.error('setting login data failed:', error);
         });
 });
