@@ -12,10 +12,10 @@ If you like my project and want to keep me motivated:
 
 ```
 # Install dependencies
-npm install
+yarn install
 
 # Run the app
-npm start
+yarn start
 ```
 
 *Note:* If you are on Linux install the `libsecret` library first ([see here](https://www.npmjs.com/package/keytar#on-linux)).
@@ -24,12 +24,7 @@ npm start
 ### Package application
 
 ```
-# Install electron packager
-npm install -g electron-packager
-
 # Package the application
-npm run-script package-mac
-npm run-script package-win
-npm run-script package-linux
+yarn dist
 ```
 	

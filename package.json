@@ -18,14 +18,20 @@
     "facts",
     "reporting"
   ],
+  "build": {
+    "appId": "com.philipptrenz.ctfactsreporter",
+    "asar": true,
+    "files": [
+
+    ]
+  },
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/.bin/electron-rebuild",
-    "package-mac": "node scripts/package-mac.js",
-    "package-win": "node scripts/package-win.js",
-    "package-linux": "node scripts/package-linux.js"
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder -mwl"
   },
   "dependencies": {
     "electron-json-storage": "^4.1.6",
@@ -40,7 +46,6 @@
   },
   "devDependencies": {
     "electron": "^5.0.0",
-    "electron-packager": "^13.1.1",
-    "electron-rebuild": "^1.8.4"
+    "electron-builder": "^20.40.2"
   }
 }
