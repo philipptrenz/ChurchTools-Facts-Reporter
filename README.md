@@ -4,7 +4,7 @@ This desktop application provides an easy way to report facts about events in [C
 
 ![Screenshot](assets/screenshots/02.png)
 
-Thanks to [keytar](https://www.npmjs.com/package/keytar) the password gets securely stored in system's keychain. On macOS the passwords are managed by the Keychain, on Linux they are managed by the Secret Service API/libsecret, and on Windows they are managed by Credential Vault. 
+Thanks to [keytar](https://www.npmjs.com/package/keytar) the password gets securely stored in system's keychain. On macOS the passwords are managed by the Keychain, on Linux by the Secret Service API/libsecret and on Windows by Credential Vault. 
 
 If you like my project and want to keep me motivated:
 
