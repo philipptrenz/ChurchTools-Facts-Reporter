@@ -1,8 +1,10 @@
 # ChurchTools Facts Reporter
 
-This app provides an easy way to report facts about events in [ChurchTools](http://church.tools). The software is based on [Electron](http://electronjs.org) and can be used cross-platform on Windows, MacOS and Linux.
+This desktop application provides an easy way to report facts about events in [ChurchTools](http://church.tools). The software is based on [Electron](http://electronjs.org) and can be used cross-platform on Windows, MacOS and Linux.
 
 ![Screenshot](assets/screenshots/02.png)
+
+Thanks to [keytar](https://www.npmjs.com/package/keytar) the password gets securely stored in system's keychain. On macOS the passwords are managed by the Keychain, on Linux they are managed by the Secret Service API/libsecret, and on Windows they are managed by Credential Vault. 
 
 If you like my project and want to keep me motivated:
 
