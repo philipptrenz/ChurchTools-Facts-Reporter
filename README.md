@@ -4,11 +4,16 @@ This desktop application provides an easy way to report facts about events in [C
 
 ![Screenshot](assets/screenshots/02.png)
 
-Thanks to [keytar](https://www.npmjs.com/package/keytar) the password gets securely stored in system's keychain. On macOS the password is managed by the Keychain, on Linux by the Secret Service API/libsecret and on Windows by Credential Vault. 
-
 If you like my project and want to keep me motivated:
 
 <a href='https://ko-fi.com/U7U6COXD' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
+## Features
+
+* Securely store ChurchTools credentials in system's keychain
+* Auto-login on application start
+* Auto-logout on application exit
+* Auto-selection of latest event within the last six days
 
 ## Install
 
