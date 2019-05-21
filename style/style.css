@@ -128,3 +128,9 @@ nav .brand-logo.left{
     position: relative;
     top: 15px;
 }
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 0 !important;
+}

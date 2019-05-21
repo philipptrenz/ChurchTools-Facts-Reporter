@@ -6,7 +6,7 @@ const $ = require('jquery');
 const moment = require('moment');
 const ct = require('./lib/churchtools');
 const credentials = require('./lib/credentials');
-const {ipcRenderer} = require('electron');
+const {ipcRenderer, shell} = require('electron');
 
 let isLoggedIn = false;
 const fadeTime = 1500;
@@ -319,4 +319,8 @@ $("#submit-facts").click(function() {
             }
         }
     }
+});
+
+$(".open-github").click(function() {
+    shell.openExternal('https://github.com/philipptrenz/churchtools-facts-reporter');
 });
