@@ -69,6 +69,11 @@ nav .brand-logo.left{
     padding-top: 0.75rem;
 }
 
+.toast-info {
+    width: 100%;
+    text-align: left;
+}
+
 .toast-check-icon {
     padding-right: 0.4rem;
 }

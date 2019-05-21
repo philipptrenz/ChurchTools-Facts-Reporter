@@ -306,7 +306,7 @@ $("#submit-facts").click(function() {
                     .then(function () {
                         console.log('fact', fact.id, ' of event', eventIdOfFacts, 'updated from', fact.value, 'to', new_value);
                         fact.value = new_value;
-                        M.toast({html: '<i class="material-icons toast-check-icon">check</i> \''+fact.name+'\' reported'});
+                        M.toast({html: '<i class="material-icons toast-check-icon">check</i><div class="toast-info"> \''+fact.name+'\' reported</div>'});
                     })
                     .fail(function (error) {
 
