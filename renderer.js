@@ -11,6 +11,8 @@ const {ipcRenderer} = require('electron');
 let isLoggedIn = false;
 const fadeTime = 1500;
 
+
+
 // logout before window close
 ipcRenderer.on('app-close', _ => {
 
@@ -183,8 +185,8 @@ function displayEventsList(eventsData) {
     for (let j in edata) {
         const _date = edata[j].date;
 
-        // TODO: Fix workaround
-        if ( _date.format('LL') === lastSunday.format('LL') ) {
+        const diff = moment().diff(_date, 'days');
+        if (diff >= 0 && diff < 6) {
             lastSundayEvent = '#event-'+ edata[j].id;
         }
 
