@@ -239,13 +239,13 @@ $('body').on('click', '.events-list-item', function() {
 
 });
 
-let listOfFactsForEvent = [];
+
 let eventIdOfFacts = '';
+let listOfFactsForEvent = [];
 
 function displayFacts(eventId, allFacts, factsMetaData) {
 
-    // empty div
-    $('#facts-list').empty();
+
 
     eventIdOfFacts = eventId;
 
@@ -267,6 +267,13 @@ function displayFacts(eventId, allFacts, factsMetaData) {
         listOfFactsForEvent.push({ id: f.id, name: f.bezeichnung, sortKey: f.sortkey, value: value });
     }
 
+    displayFactsFromArray();
+
+}
+
+function displayFactsFromArray() {
+    // empty div
+    $('#facts-list').empty();
 
     for (let i in listOfFactsForEvent) {
 
@@ -288,8 +295,21 @@ function displayFacts(eventId, allFacts, factsMetaData) {
 
 
 $("#submit-facts").click(function() {
-
     if (eventIdOfFacts === "") return;
+
+    for (let i in listOfFactsForEvent) {
+        let val = listOfFactsForEvent[i].value;
+        if (val && val !== ""){
+            let doOverwriteExistingValues = confirm('Overwrite existing values?');
+
+            if (doOverwriteExistingValues) break;
+            else {
+                displayFactsFromArray();
+                break;
+            }
+        }
+    }
+
     for (let i in listOfFactsForEvent) {
 
         let fact = listOfFactsForEvent[i];
