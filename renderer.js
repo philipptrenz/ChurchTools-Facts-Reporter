@@ -180,13 +180,13 @@ function displayEventsList(eventsData) {
         return a.date - b.date;
     });
 
-    const lastSunday = moment().isoWeekday(0);
     let lastSundayEvent = null;
     for (let j in edata) {
         const _date = edata[j].date;
 
+        // if event is within the last week mark as last passed event
         const diff = moment().diff(_date, 'days');
-        if (diff >= 0 && diff < 6) {
+        if (diff >= 0 && diff < 6) {    // was 0 to 6 days ago
             lastSundayEvent = '#event-'+ edata[j].id;
         }
 
