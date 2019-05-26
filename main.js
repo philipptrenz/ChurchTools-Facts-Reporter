@@ -5,7 +5,6 @@ const keytar = require('keytar')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-const keytarServiceName = app.getName()
 
 function createWindow () {
   // Create the browser window.
@@ -72,21 +71,21 @@ app.on('activate', function () {
 // keytar
 
 ipcMain.on('get-password', (event, user) => {
-  keytar.getPassword(keytarServiceName, user)
+  keytar.getPassword(app.getName(), user)
       .then((res) => {
         event.returnValue = res;
       });
 });
 
 ipcMain.on('set-password', (event, user, pass) => {
-  keytar.setPassword(keytarServiceName, user, pass)
+  keytar.setPassword(app.getName(), user, pass)
       .then((res) => {
         event.returnValue = res;
       });
 });
 
 ipcMain.on('delete-password', (event, user) => {
-  keytar.deletePassword(keytarServiceName, user)
+  keytar.deletePassword(app.getName(), user)
       .then((res) => {
         event.returnValue = res;
       });
