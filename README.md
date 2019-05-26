@@ -14,6 +14,7 @@ If you like my project and want to keep me motivated:
 * Auto-login on application start
 * Auto-logout on application exit
 * Auto-selection of latest event within the last six days
+* Show warning prompt before overwriting existing values
 
 ## Install
 
