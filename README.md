@@ -8,7 +8,7 @@ If you like my project and want to keep me motivated:
 
 <a href='https://ko-fi.com/U7U6COXD' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-## Features
+## Current features
 
 * Securely store ChurchTools credentials in system's keychain
 * Auto-login on application start
@@ -16,7 +16,18 @@ If you like my project and want to keep me motivated:
 * Auto-selection of latest event within the last six days
 * Show warning prompt before overwriting existing values
 
-## Install
+
+## Use it
+
+If you want to use the Facts Reporter, check out the packaged releases for Windows, MacOS and Linux [here](https://github.com/philipptrenz/ChurchTools-Facts-Reporter/releases).
+
+## Improve it
+
+Any suggestion and improvement is highly welcome! If you encounter bugs write an [issue](https://github.com/philipptrenz/ChurchTools-Facts-Reporter/issues). If you have improved the software please share your improvements, in the sense of the open source philosophy, with a [pull request](https://help.github.com/en/articles/about-pull-requests). 
+
+### Install
+
+To get started with coding, you need [node](http://nodejs.org), [yarn](https://yarnpkg.com/lang/en/) and some skills in web technologies. 
 
 ```
 # Install dependencies
@@ -31,8 +42,11 @@ yarn start
 
 ### Package application
 
+Generate executables for Windows, MacOS and Linux is as easy as this:
+
 ```
 # Package the application
 yarn dist
 ```
-	
+
+Afterwards you find the binaries within the `dist/` folder.
