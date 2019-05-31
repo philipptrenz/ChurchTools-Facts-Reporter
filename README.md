@@ -23,7 +23,7 @@ If you want to use the Facts Reporter, check out the packaged releases for Windo
 
 ## Improve it
 
-Any suggestion and improvement is highly welcome! If you encounter bugs write an [issue](https://github.com/philipptrenz/ChurchTools-Facts-Reporter/issues). If you have improved the software please share your improvements, in the sense of the open source philosophy, with a [pull request](https://help.github.com/en/articles/about-pull-requests). 
+Any suggestion and improvement is highly welcome! If you encounter a bug, please write an [issue](https://github.com/philipptrenz/ChurchTools-Facts-Reporter/issues). If you have improved the software, please share your improvements, in the sense of the open source philosophy, with a [pull request](https://help.github.com/en/articles/about-pull-requests). 
 
 ### Install
 
