@@ -10,6 +10,7 @@ If you like my project and want to keep me motivated:
 
 ## Current features
 
+* Display all facts columns from ChurchTools 
 * Securely store ChurchTools credentials in system's keychain
 * Auto-login on application start
 * Auto-logout on application exit
