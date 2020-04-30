@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "electron-json-storage": "^4.1.6",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "keytar": "^4.6.0",
     "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
