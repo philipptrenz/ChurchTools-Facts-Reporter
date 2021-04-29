@@ -21,9 +21,7 @@
   "build": {
     "appId": "com.philipptrenz.ctfactsreporter",
     "asar": true,
-    "files": [
-
-    ]
+    "files": []
   },
   "main": "main.js",
   "scripts": {
