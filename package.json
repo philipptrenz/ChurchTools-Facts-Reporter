@@ -21,7 +21,14 @@
   "build": {
     "appId": "com.philipptrenz.ctfactsreporter",
     "asar": true,
-    "files": []
+    "files": [],
+    "win": {
+      "target": "portable"
+    },
+    "portable": {
+      "unicode": false,
+      "artifactName": "ChurchToolsFactsReporter.exe"
+    }
   },
   "main": "main.js",
   "scripts": {
@@ -37,6 +44,7 @@
     "keytar": "^4.6.0",
     "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
+    "prebuild-install": "^6.1.2",
     "q": "^1.4.1",
     "restler": "^3.4.0",
     "underscore": "^1.8.3",
@@ -46,5 +54,8 @@
   "devDependencies": {
     "electron": "9.4.0",
     "electron-builder": "^20.40.2"
+  },
+  "resolutions": {
+    "node-abi": "^2.26.0"
   }
 }
