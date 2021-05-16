@@ -1627,7 +1627,7 @@ responselike@^1.0.2:
   dependencies:
     lowercase-keys "^1.0.0"
 
-restler@>=6.3.2:
+restler@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/restler/-/restler-3.4.0.tgz#741ec0b3d16b949feea2813d0c3c68529e888d9b"
   integrity sha1-dB7As9FrlJ/uooE9DDxoUp6IjZs=
