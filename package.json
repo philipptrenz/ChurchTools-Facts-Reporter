@@ -52,7 +52,7 @@
     "y18n": "4.0.1"
   },
   "devDependencies": {
-    "electron": "^5.0.0",
+    "electron": "9.4.0",
     "electron-builder": "^20.40.2"
   },
   "resolutions": {
