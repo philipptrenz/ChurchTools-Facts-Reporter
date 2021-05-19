@@ -1,4 +1,4 @@
-Note: This software is no longer maintained.
+*Note: This project is no longer maintained.*
 
 # ChurchTools Facts Reporter
 
