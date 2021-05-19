@@ -1,3 +1,5 @@
+Note: This software is no longer maintained.
+
 # ChurchTools Facts Reporter
 
 This desktop application provides an easy way to report facts about events in [ChurchTools](http://church.tools). The software is based on [Electron](http://electronjs.org) and can be used cross-platform on Windows, MacOS and Linux.
